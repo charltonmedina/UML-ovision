@@ -1,0 +1,9 @@
+@startuml teste
+
+class Animais
+
+Ovinos - Animais : espécie >
+Animais *- Raças : tem muitas >
+Animais -- Tipo : < leiteiro
+
+@enduml
