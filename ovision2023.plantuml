@@ -1,0 +1,184 @@
+@startuml teste2
+
+class Animal
+{
+     id:int
+     codigo:int
+     lote:int
+     nome:string
+     sexo:string
+     dtNasc:DateTime
+     peso:float
+     pai:Animal
+     mae:Animal
+     tipo_criacao:Tipo_Criacao
+     acasalamento:Acasalamento
+     categoria:Categoria
+     fase:Fase
+     raca:list<Raca>
+     fazenda:Fazenda
+}
+
+class ArquivoMorto
+{
+     animal:Animal
+     date:Date
+     description:string
+}
+
+class Catalogo
+{
+     id:int
+     nome:string
+     pathimage:string
+     animal:Animal
+}
+
+class ControleSanitario
+{
+     id:int
+     tipo:string
+     data:Date
+}
+
+class Fase
+{
+     cria:int
+     recria:string
+     engorda:string
+}
+
+class Categoria
+{
+     id:int
+     nome:string
+}
+
+class Acasalamento
+{
+     id:int
+     nome:string
+}
+
+class Tipo_Nascimento
+{
+     id:int
+     nome:string
+}
+
+class Peso_Periodo
+{
+     id:int
+     valor:int
+}
+
+class Manejo
+{
+     id:int
+     nome:string
+     data:Date
+}
+
+class Raca
+{
+     raca:string
+     teor:float
+}
+
+class Fazenda
+{
+     id:int
+     nome:string
+     proprietario:Proprietario
+     funcionarios:List<Funcionario>
+}
+
+class Funcionario
+{
+     method(type):type
+}
+
+abstract class Usuario
+{
+     id:int
+     email:string
+     password:Password
+     user:string
+     login():
+}
+
+class Proprietario
+{
+     insertFarm:void
+     transferFarm(Fazenda):void
+     EmployWorker(Fazenda):void
+}
+
+class Material
+{
+     id:int
+     nome:string
+     preco:float
+     qnt:float
+     sell():void
+}
+
+class Caixa
+{
+     id:int
+     fazenda:Fazenda
+     caixa:float
+     sell():void
+}
+
+class Venda
+{
+     id:int
+     produto:Produto
+     quantidade:float
+     preco:float
+     animal:Animal
+     sell():void
+}
+
+class Compra
+{
+     id:int
+     codigo:string
+     produto:Produto
+     quantidade:float
+     animal:Animal
+     preco:float
+     dividas:List<Divida>
+     sell():void
+}
+
+class Divida
+{
+     id:int
+     compra:Compra
+     preco:float
+     sell():void
+}
+
+ArquivoMorto -* Animal
+Catalogo -* Animal
+ControleSanitario --* Animal
+Raca --# Animal
+Manejo --# Animal
+Peso_Periodo --# Animal
+Tipo_Nascimento --# Animal
+Acasalamento --# Animal
+Categoria --# Animal
+Fase -# Animal
+Divida --* Compra
+Compra #- Animal
+Venda #- Animal
+Caixa -# Fazenda
+Material #-- Fazenda
+Proprietario *-- Fazenda
+Proprietario --> Funcionario
+Usuario --> Funcionario
+Fazenda #-- Animal
+
+@enduml
